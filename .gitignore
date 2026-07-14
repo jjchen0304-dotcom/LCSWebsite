@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Local screenshots from browser verification
+registration-page-full.png
+registration-page-full-single.png
+registration-page-full-oneshot.png
