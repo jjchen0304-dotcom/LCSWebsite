@@ -1470,8 +1470,8 @@ h3 {
 }
 
 .announcement-ribbon {
-  background: linear-gradient(180deg, #fff 0%, #fbf7ef 100%);
-  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--red) 0%, var(--red2) 100%);
+  border-bottom: 0;
 }
 
 .announcement-ribbon-inner {
@@ -1486,15 +1486,19 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: var(--red);
+  color: #fff;
   font-weight: 700;
   white-space: nowrap;
 }
 
 .announcement-ribbon-status {
   margin: 0;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
+}
+
+.announcement-ribbon-error {
+  color: #fff3db;
 }
 
 .announcement-ribbon-error {
@@ -1527,9 +1531,9 @@ h3 {
 .announcement-chip {
   width: 280px;
   flex: 0 0 280px;
-  background: #fff;
-  border: 1px solid var(--line);
-  box-shadow: 0 8px 24px rgba(28, 25, 20, 0.08);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 24px rgba(28, 25, 20, 0.12);
   padding: 16px 18px;
   display: grid;
   gap: 10px;
@@ -1552,6 +1556,12 @@ h3 {
   margin: 0;
 }
 
+.announcement-chip h3,
+.announcement-chip p,
+.announcement-chip-header small {
+  color: #fff;
+}
+
 .announcement-chip-header {
   display: flex;
   justify-content: space-between;
@@ -1570,7 +1580,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: var(--red);
+  color: #fff3db;
   font-weight: 700;
 }
 
