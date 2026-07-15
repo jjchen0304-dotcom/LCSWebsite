@@ -58,6 +58,32 @@ const baseTuition = 150
 const earlyBirdDiscount = 5
 const earlyBirdDeadline = new Date('2026-01-11T23:59:59')
 const isEarlyBirdAvailable = new Date() <= earlyBirdDeadline
+const homeCalendarFallback = [
+  {
+    id: 'preview-calendar-1',
+    category: 'School Day',
+    title: 'Opening Sunday and family welcome',
+    dateLabel: 'Sep 13, 2026, 2:00 PM',
+    location: 'Patterson Hall',
+    description: 'First day arrival, classroom introductions, and semester kickoff for students and families.',
+  },
+  {
+    id: 'preview-calendar-2',
+    category: 'Community',
+    title: 'Mid-autumn cultural afternoon',
+    dateLabel: 'Oct 4, 2026, 2:00 PM',
+    location: 'Patterson Hall',
+    description: 'A schoolwide afternoon with stories, songs, and seasonal cultural activities woven into the class schedule.',
+  },
+  {
+    id: 'preview-calendar-3',
+    category: 'Volunteer',
+    title: 'Parent support and event planning meeting',
+    dateLabel: 'Oct 25, 2026, 1:30 PM',
+    location: 'School lobby',
+    description: 'Volunteer planning for classroom support, school events, and family community coordination.',
+  },
+] as const
 
 function formatDateTime(value: string) {
   return new Intl.DateTimeFormat('en-US', {
@@ -209,9 +235,9 @@ function HomePage() {
           </div>
         </div>
       </section>
-      <section className="shortcuts section">
+      <section id="registration-home" className="shortcuts section">
         <div className="container">
-          <div className="section-heading">
+          <div className="section-heading centered">
             <p className="eyebrow red">Popular shortcuts</p>
             <h2>Find what your family needs</h2>
           </div>
@@ -226,6 +252,7 @@ function HomePage() {
           </div>
         </div>
       </section>
+      <NewsPreview posts={newsPosts} loading={newsLoading} error={newsError} />
       <section id="programs" className="programs section">
         <div className="container">
           <div className="section-heading centered">
@@ -246,18 +273,16 @@ function HomePage() {
           </div>
         </div>
       </section>
-      <NewsPreview posts={newsPosts} loading={newsLoading} error={newsError} />
-      <section className="events section home-calendar-section">
+      <section id="calendar" className="events section home-calendar-section">
         <div className="container">
-          <div className="section-heading row">
+          <div className="section-heading centered">
             <div>
               <p className="eyebrow red">Calendar</p>
               <h2>Upcoming school events</h2>
             </div>
-            <SmartLink className="text-link" href={CALENDAR_PATH}>View full calendar <ArrowRight size={17} /></SmartLink>
+            <SmartLink className="text-link section-heading-link" href={CALENDAR_PATH}>View full calendar <ArrowRight size={17} /></SmartLink>
           </div>
           {calendarLoading ? <p className="loading-note">Loading calendar…</p> : null}
-          {calendarError ? <p className="form-error">Calendar is temporarily unavailable.</p> : null}
           {!calendarLoading && !calendarError ? (
             <div className="home-calendar-grid">
               {previewEvents.length > 0 ? previewEvents.map((event) => (
@@ -268,14 +293,24 @@ function HomePage() {
                   {event.location ? <p>{event.location}</p> : null}
                   {event.description ? <p>{event.description}</p> : null}
                 </article>
-              )) : (
-                <article className="calendar-preview-card">
-                  <p className="tag">Calendar</p>
-                  <h3>No published events yet</h3>
-                  <p>Published calendar events will appear here automatically.</p>
-                </article>
-              )}
+              )) : null}
             </div>
+          ) : null}
+          {!calendarLoading && (calendarError || previewEvents.length === 0) ? (
+            <>
+              <p className="preview-note">Preview events are shown here until published calendar entries are connected.</p>
+              <div className="home-calendar-grid">
+                {homeCalendarFallback.map((event) => (
+                  <article className="calendar-preview-card" key={event.id}>
+                    <p className="tag">{event.category}</p>
+                    <h3>{event.title}</h3>
+                    <p className="calendar-preview-date">{event.dateLabel}</p>
+                    <p>{event.location}</p>
+                    <p>{event.description}</p>
+                  </article>
+                ))}
+              </div>
+            </>
           ) : null}
         </div>
       </section>

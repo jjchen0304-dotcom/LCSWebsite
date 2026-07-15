@@ -24,6 +24,16 @@ html {
   scroll-behavior: smooth;
 }
 
+#about,
+#registration-home,
+#programs,
+#news,
+#calendar,
+#community,
+#contact {
+  scroll-margin-top: 124px;
+}
+
 body {
   margin: 0;
   color: var(--ink);
@@ -171,8 +181,28 @@ img {
   font-weight: 600;
 }
 
+.desktop-nav a {
+  transition: color 180ms ease;
+}
+
 .desktop-nav a:hover {
   color: var(--red);
+}
+
+.desktop-nav a.active {
+  color: var(--red);
+  position: relative;
+}
+
+.desktop-nav a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 2px;
+  background: var(--red);
+  transition: opacity 180ms ease;
 }
 
 .search,
@@ -188,6 +218,10 @@ img {
 
 .mobile-nav {
   display: none;
+}
+
+.mobile-nav a.active {
+  color: var(--red);
 }
 
 .hero {
@@ -427,6 +461,10 @@ h3 {
   margin: 0 auto 42px;
 }
 
+.section-heading.centered .section-heading-link {
+  justify-content: center;
+}
+
 .section-heading.row {
   display: flex;
   justify-content: space-between;
@@ -483,6 +521,10 @@ h3 {
 
 .about {
   background: var(--cream);
+}
+
+.shortcuts {
+  background: #fff;
 }
 
 .split {
@@ -577,6 +619,14 @@ h3 {
 
 .programs {
   background: #fff;
+}
+
+.news-preview-section {
+  background: var(--cream);
+}
+
+.home-calendar-section {
+  background: #f2eee6;
 }
 
 .program-grid {
@@ -1550,8 +1600,21 @@ h3 {
 
 .news-card-image-fallback {
   background:
+    radial-gradient(circle at 78% 22%, rgba(238, 206, 138, 0.9), transparent 32%),
     linear-gradient(135deg, rgba(183, 138, 61, 0.22), rgba(157, 29, 32, 0.12)),
     linear-gradient(180deg, #faf5ea, #f2eee6);
+  position: relative;
+}
+
+.news-card-image-fallback::after {
+  content: 'Lexington Chinese School';
+  position: absolute;
+  left: 22px;
+  bottom: 18px;
+  color: rgba(18, 26, 35, 0.68);
+  font-family: 'Cormorant Garamond';
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .news-card-body {
@@ -1578,6 +1641,17 @@ h3 {
 .calendar-preview-date {
   color: var(--ink) !important;
   font-weight: 700;
+}
+
+.preview-note {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.news-preview-placeholder-link {
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .news-article-shell {
