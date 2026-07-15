@@ -1,6 +1,7 @@
 node_modules/
 dist/
 *.tsbuildinfo
+.env.local
 
 # Local screenshots from browser verification
 registration-page-full.png
