@@ -1501,10 +1501,6 @@ h3 {
   color: #fff3db;
 }
 
-.announcement-ribbon-error {
-  color: var(--red2);
-}
-
 .announcement-marquee {
   overflow-x: auto;
   scrollbar-width: thin;
@@ -1573,6 +1569,10 @@ h3 {
 .news-date {
   color: var(--muted);
   font-weight: 600;
+}
+
+.announcement-chip-header small {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .announcement-chip-link {
